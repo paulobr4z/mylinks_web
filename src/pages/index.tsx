@@ -1,8 +1,11 @@
-import type { NextPage } from 'next'
+import { GetServerSideProps } from 'next';
 import Head from 'next/head'
 import { HomeContent } from '../contents/home'
+import { useContext } from 'react';
+import { AuthContext } from '../contexts/AuthContext';
+import { withSession } from '../services/withSession';
 
-const Home: NextPage = () => {
+export default function Home() {
   return (
     <div>
       <Head>
@@ -15,4 +18,8 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export const getServerSideProps: GetServerSideProps = withSession(async (ctx) => {
+  return {
+    props: {}, 
+  }
+})

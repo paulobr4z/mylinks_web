@@ -1,9 +1,15 @@
-import React from 'react';
+import { ProfileContent } from '../contents/profile';
 
-export default function Profile() {
-  return (
-    <div>
-      <h1>USER DEMOSNTRATION</h1>
-    </div>
-  );
+export default function Profile({ username }: any) {
+  return <ProfileContent username={username} />
+}
+
+export async function getServerSideProps(context: any) {
+  const { profile } = context.query;
+  
+  return {
+    props: {
+      username: profile
+    }, 
+  }
 }
